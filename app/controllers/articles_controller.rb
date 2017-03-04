@@ -1,10 +1,11 @@
 class ArticlesController < ApplicationController
   def new
+    #need to init articles, otherwise checking for @article.errors.any? would throw an error.
     @article = Article.new
   end
 
-  def show
-    @article = Article.find(params[:id])
+  def edit
+    @article = Article.new(params[:id])
   end
 
   def create
@@ -15,6 +16,10 @@ class ArticlesController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def show
+    @article = Article.find(params[:id])
   end
 
   def index
