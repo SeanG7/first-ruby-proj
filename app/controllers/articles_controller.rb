@@ -1,11 +1,21 @@
 class ArticlesController < ApplicationController
+
+  def index
+    @articles = Article.all
+  end
+
+  def show
+    @article = Article.find(params[:id])
+  end
+
   def new
     #need to init articles, otherwise checking for @article.errors.any? would throw an error.
     @article = Article.new
   end
 
   def edit
-    @article = Article.new(params[:id])
+    #edit just grabs the values for the passed article and then makes those available to the form to fill
+    @article = Article.find(params[:id])
   end
 
   def create
